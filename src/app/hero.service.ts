@@ -10,10 +10,13 @@ export class HeroService {
 
   constructor(private messageSVC: MessageService) { }
 
+    // to do - send message after fetching each
   getHeroes(): Observable<Hero[]> {
-    // to do - send message after fetching
     this.messageSVC.add('HeroService: fetched heroes');
     return of(HEROES);
   }
-
+  getHero(id): Observable<Hero> {
+    this.messageSVC.add(`HeroService: fetched id=${id}`);
+    return of(HEROES.find(hero => hero.id === id));
+  }
 }
